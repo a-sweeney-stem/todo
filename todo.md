@@ -1,7 +1,7 @@
 [ ] ======================== SETUP  
 [x] Create Next.js app     
-[ ] Add remote to repo and push to github  
-[ ] Set up local database and document it into readme     
+[x] Add remote to repo and push to github  
+[x] Set up local database and document it into readme     
 [ ] Install drizzle and postgres  
 [ ] Using postgres and drizzle ORM create a database   
 with a Tasks table with the following:
