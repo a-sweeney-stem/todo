@@ -1,9 +1,9 @@
-[ ] ======================== SETUP  
+[x] ======================== SETUP  
 [x] Create Next.js app     
 [x] Add remote to repo and push to github  
 [x] Set up local database and document it into readme     
 [x] Install drizzle and postgres  
-[ ] Using postgres and drizzle ORM create a database   
+[x] Using postgres and drizzle ORM create a database   
 with a Tasks table with the following:
 
     columns: Id: serial, 
@@ -16,7 +16,7 @@ with a Tasks table with the following:
 
     Created_at: timestamp 
 
-[ ] Install bootstrap in Next.js app
+[x] Install bootstrap in Next.js app
 
 [ ] ======================== UI Elements  
 [ ] Make task input component  
