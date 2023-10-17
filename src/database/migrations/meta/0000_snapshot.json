@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "586e4d3f-076a-4f5e-808d-8c8d44a7a8d3",
+  "id": "94bf68dd-d973-4130-9674-4894a8b89194",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "task": {
@@ -37,10 +37,11 @@
         },
         "created_at": {
           "name": "created_at",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP"
         }
       },
       "indexes": {},

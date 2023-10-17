@@ -5,8 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1697370252697,
-      "tag": "0000_create_task_table",
+      "when": 1697535098951,
+      "tag": "0000_add_task_table",
       "breakpoints": true
     }
   ]

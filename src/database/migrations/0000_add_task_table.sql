@@ -3,5 +3,5 @@ CREATE TABLE `task` (
 	`task_name` text,
 	`task_description` text,
 	`task_completed` integer,
-	`created_at` integer
+	`created_at` text DEFAULT CURRENT_TIMESTAMP
 );
