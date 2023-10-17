@@ -1,11 +1,9 @@
-import { db } from '../database/db';
-import { tasks } from '../database/schema/tasks';
+import { db } from "../database/db";
+import { tasks } from "../database/schema/tasks";
 
-export default function Home() { 
+export default function Home() {
   const allTasks = db.select().from(tasks).all();
-  console.log('allTasks', allTasks)
+  console.log("allTasks", allTasks);
 
-  return (
-    <p>Home</p>
-  )
+  return <p>Home</p>;
 }
