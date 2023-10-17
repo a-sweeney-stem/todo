@@ -17,13 +17,15 @@ with a Tasks table with the following:
     Created_at: timestamp 
 
 [x] Install bootstrap in Next.js app
+[x] Add drizzle config file
+[ ] Install and Setup prettier, make sure it triggers on save
 
 [ ] ======================== UI Elements  
 [ ] Make task input component  
 [ ] Make task component  
 
 [ ] ======================== API
-Create following endpoints:  
+Create following endpoints:   look at stem proj + next docs, it's not that hard
 [ ] CREATE/task  
 [ ] GET/tasks   
 [ ] GET/task/[id]  
@@ -31,7 +33,7 @@ Create following endpoints:
 [ ] DELETE/task/[id]  
 
 [ ] ======================== App  
-Create app that:  
+Create app with pages router that:
 on load:  
 [ ] loads all tasks from database   
 [ ] displays task input component  
