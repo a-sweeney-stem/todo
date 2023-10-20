@@ -1,15 +1,15 @@
 "use client";
 import "bootstrap/dist/css/bootstrap.css";
-import { ChangeEvent, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import styles from "./TaskInput.module.css";
 
-import { OnSubmitProps } from "@/helpers/types";
-
-interface TaskInputProps {
-  onSubmit: (props: OnSubmitProps) => void;
-}
-
-const TaskInput = ({ onSubmit }: TaskInputProps) => {
+const TaskInput = () => {
   const [errorMesssage, setErrorMessage] = useState("");
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
@@ -28,9 +28,12 @@ const TaskInput = ({ onSubmit }: TaskInputProps) => {
     setTaskCompleted((oldVal) => !oldVal);
   };
 
-  const handleClickSubmit = (props: OnSubmitProps) => {
-    onSubmit(props);
-  };
+  const handleClickSubmit = (props: {
+    taskName: string;
+    taskDescription: string;
+    taskCompleted: boolean;
+    setErrorMessage: Dispatch<SetStateAction<string>>;
+  }) => {};
 
   const updateIsValid = (taskName: string, taskDescription: string) => {
     const isValid = taskName.length > 0 && taskDescription.length > 0;
