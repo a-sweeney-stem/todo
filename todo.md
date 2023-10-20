@@ -16,9 +16,9 @@ with a Tasks table with the following:
 [x] Add drizzle config file
 [x] Install and Setup prettier, make sure it triggers on save
 
-[ ] ======================== UI Elements  
+[x] ======================== UI Elements  
 [x] Make task input component  
-[ ] Make task component
+[x] Make task component
 
 [ ] ======================== API
 Create following endpoints: look at stem proj + next docs, it's not that hard
