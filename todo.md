@@ -20,13 +20,12 @@ with a Tasks table with the following:
 [x] Make task input component  
 [x] Make task component
 
-[ ] ======================== API
-Create following endpoints: look at stem proj + next docs, it's not that hard
-[ ] CREATE/task  
-[ ] GET/tasks  
-[ ] GET/task/[id]  
-[ ] UPDATE/task/[id]  
-[ ] DELETE/task/[id]
+[x] ======================== API
+Create following endpoints: look at stem proj + next docs
+[x] POST/task  
+[x] GET/tasks  
+[x] UPDATE/task/[id]  
+[x] DELETE/task/[id]
 
 [ ] ======================== App  
 Create app with pages router that:
