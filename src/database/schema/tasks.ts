@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { InferInsertModel, sql } from "drizzle-orm";
 import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
 
 export const tasks = sqliteTable("task", {
@@ -8,3 +8,5 @@ export const tasks = sqliteTable("task", {
   taskCompleted: integer("task_completed", { mode: "boolean" }),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
 });
+
+export type Task = InferInsertModel<typeof tasks>;

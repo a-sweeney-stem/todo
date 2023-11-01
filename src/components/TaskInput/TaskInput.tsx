@@ -9,7 +9,11 @@ import {
 } from "react";
 import styles from "./TaskInput.module.css";
 
-const TaskInput = () => {
+interface TaskInputProps {
+  updateTasks: () => void;
+}
+
+const TaskInput = ({ updateTasks }: TaskInputProps) => {
   const [errorMesssage, setErrorMessage] = useState("");
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
@@ -28,12 +32,18 @@ const TaskInput = () => {
     setTaskCompleted((oldVal) => !oldVal);
   };
 
-  const handleClickSubmit = (props: {
+  const handleClickSubmit = async (props: {
     taskName: string;
     taskDescription: string;
     taskCompleted: boolean;
     setErrorMessage: Dispatch<SetStateAction<string>>;
-  }) => {};
+  }) => {
+    await fetch(`/api/task`, {
+      method: "POST",
+      body: JSON.stringify(props),
+    });
+    updateTasks();
+  };
 
   const updateIsValid = (taskName: string, taskDescription: string) => {
     const isValid = taskName.length > 0 && taskDescription.length > 0;

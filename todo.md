@@ -27,18 +27,18 @@ Create following endpoints: look at stem proj + next docs
 [x] UPDATE/task/[id]  
 [x] DELETE/task/[id]
 
-[ ] ======================== App  
+[x] ======================== App  
 Create app with pages router that:
 on load:  
-[ ] loads all tasks from database  
-[ ] displays task input component  
-[ ] displays task component for each task loaded from database
+[x] loads all tasks from database  
+[x] displays task input component  
+[x] displays task component for each task loaded from database
 
 on user interaction:  
 updates the database using the API when the user:  
-[ ] creates a task  
-[ ] deletes a task  
-[ ] updates a task
+[x] creates a task  
+[x] deletes a task  
+[x] updates a task
 
 [ ] ======================== Test  
 write e2e tests for:  

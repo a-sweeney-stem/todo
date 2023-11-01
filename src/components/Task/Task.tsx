@@ -4,12 +4,19 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { ChangeEvent, useState } from "react";
 import styles from "./Task.module.css";
 
-const Task = () => {
+interface TaskProps {
+  taskName: string;
+  taskDescription: string;
+  id: number;
+  updateTasks: () => void;
+}
+
+const Task = (props: TaskProps) => {
+  const { updateTasks, id } = props;
+
   const [isTaskOpen, setIsTaskOpen] = useState(false);
-  const [taskName, setTaskName] = useState("Example Task Name");
-  const [taskDescription, setTaskDescription] = useState(
-    "example task description"
-  );
+  const [taskName, setTaskName] = useState(props.taskName);
+  const [taskDescription, setTaskDescription] = useState(props.taskDescription);
   const [taskCompleted, setTaskCompleted] = useState(false);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +33,26 @@ const Task = () => {
 
   const handleTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setTaskDescription(event.target.value);
+  };
+
+  const handleDeleteIconClick = async () => {
+    await fetch(`/api/task/${id}`, {
+      method: "DELETE",
+    });
+    updateTasks();
+  };
+
+  const handleSaveIconClick = async () => {
+    const newTask = {
+      taskName,
+      taskDescription,
+      taskCompleted,
+    };
+
+    await fetch(`/api/task/${props.id}`, {
+      method: "PUT",
+      body: JSON.stringify(newTask),
+    });
   };
 
   return (
@@ -48,8 +75,8 @@ const Task = () => {
         </div>
 
         <div>
-          <button className="bi-floppy" />
-          <button className="bi-trash" />
+          <button className="bi-floppy" onClick={handleSaveIconClick} />
+          <button className="bi-trash" onClick={handleDeleteIconClick} />
         </div>
       </div>
 

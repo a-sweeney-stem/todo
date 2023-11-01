@@ -21,6 +21,5 @@ export async function PUT(
   const body = await request.json();
 
   await db.update(tasks).set(body).where(eq(tasks.id, id)).returning();
-
   return new Response("OK");
 }
