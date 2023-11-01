@@ -5,7 +5,7 @@ import { Task as TaskType } from "@/database/schema";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [tasks, setTasks] = useState<TaskType[]>();
+  const [tasks, setTasks] = useState<TaskType[]>([]);
 
   const updateTasks = async () => {
     const res = await fetch("/api/tasks");
@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <>
       <TaskInput updateTasks={updateTasks} />
-      {tasks &&
+      {tasks.length > 0 &&
         tasks.map((task: TaskType) => {
           return (
             <Task
@@ -34,6 +34,7 @@ export default function Home() {
             />
           );
         })}
+      {tasks.length === 0 && <p>Please Add a Task</p>}
     </>
   );
 }

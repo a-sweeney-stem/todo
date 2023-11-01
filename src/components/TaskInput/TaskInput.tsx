@@ -1,5 +1,4 @@
 "use client";
-import "bootstrap/dist/css/bootstrap.css";
 import {
   ChangeEvent,
   Dispatch,
@@ -28,11 +27,11 @@ const TaskInput = ({ updateTasks }: TaskInputProps) => {
     setTaskDescription(event.target.value);
   };
 
-  const handleCheckboxChange = () => {
+  const handleToggleCheckbox = () => {
     setTaskCompleted((oldVal) => !oldVal);
   };
 
-  const handleClickSubmit = async (props: {
+  const handleSubmit = async (props: {
     taskName: string;
     taskDescription: string;
     taskCompleted: boolean;
@@ -45,7 +44,7 @@ const TaskInput = ({ updateTasks }: TaskInputProps) => {
     updateTasks();
   };
 
-  const updateIsValid = (taskName: string, taskDescription: string) => {
+  const updateIsValid = (taskName: string, taskDescription: string): void => {
     const isValid = taskName.length > 0 && taskDescription.length > 0;
     setIsValid(isValid);
   };
@@ -82,7 +81,7 @@ const TaskInput = ({ updateTasks }: TaskInputProps) => {
           type="checkbox"
           id="taskCompletedCheckbox"
           checked={taskCompleted}
-          onChange={handleCheckboxChange}
+          onChange={handleToggleCheckbox}
         />
         <label
           className="form-check-label d-inline"
@@ -94,7 +93,7 @@ const TaskInput = ({ updateTasks }: TaskInputProps) => {
       <div className="row-1">
         <button
           onClick={() =>
-            handleClickSubmit({
+            handleSubmit({
               taskName,
               taskDescription,
               taskCompleted,

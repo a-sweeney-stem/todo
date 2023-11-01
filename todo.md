@@ -53,3 +53,25 @@ write unit tests for:
 
 [ ] ======================== Deploy  
 [ ] Deploy using vercel
+
+remove taskcompleted from input
+fix - not saving task completed
+empty input form when click submit
+button -> add / hiding taskInput
+add bootstrap styles to button
+add error handling for api
+use optimistic updates -> update when click add => add to local array => use useEffect on local array to sync with db
+make Task dumb - pass in functionality to Home
+add loading state -> use suspense / loading.tsx
+add return types for APIs
+add data validation (ZOD = option) examples in monorepo
+change TaskInput name to TaskForm
+add types for useState
+add FE validation - on input and function
+add return types for functions
+add form labels - screen reader only (check on google) - accessible
+React -bootstrap typed input - have a look at
+
+v2 - research server actions
+top level component = server component -> make Form component
+react-hook-form

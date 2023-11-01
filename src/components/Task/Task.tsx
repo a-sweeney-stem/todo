@@ -1,12 +1,11 @@
 "use client";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import { ChangeEvent, useState } from "react";
 import styles from "./Task.module.css";
 
 interface TaskProps {
   taskName: string;
   taskDescription: string;
+  taskCompleted: boolean;
   id: number;
   updateTasks: () => void;
 }
