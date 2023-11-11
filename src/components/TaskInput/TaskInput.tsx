@@ -31,7 +31,7 @@ const TaskInput = ({ updateTasks }: TaskInputProps) => {
     setTaskCompleted((oldVal) => !oldVal);
   };
 
-  const handleSubmit = async (props: {
+  const processSubmit = async (props: {
     taskName: string;
     taskDescription: string;
     taskCompleted: boolean;
@@ -44,6 +44,19 @@ const TaskInput = ({ updateTasks }: TaskInputProps) => {
     updateTasks();
   };
 
+  const handleSubmit = async () => {
+    await processSubmit({
+      taskName,
+      taskDescription,
+      taskCompleted,
+      setErrorMessage,
+    });
+
+    setTaskName("");
+    setTaskDescription("");
+    setTaskCompleted(false);
+  };
+
   const updateIsValid = (taskName: string, taskDescription: string): void => {
     const isValid = taskName.length > 0 && taskDescription.length > 0;
     setIsValid(isValid);
@@ -54,7 +67,10 @@ const TaskInput = ({ updateTasks }: TaskInputProps) => {
   }, [taskName, taskDescription]);
 
   return (
-    <div className={`${styles.taskInputContainer} container p-3 bg-info`}>
+    <div
+      className={`${styles.taskInputContainer} container p-3 bg-info`}
+      data-testID={"task-input"}
+    >
       <div className="row-1">
         <input
           type="text"
@@ -91,18 +107,7 @@ const TaskInput = ({ updateTasks }: TaskInputProps) => {
         </label>
       </div>
       <div className="row-1">
-        <button
-          onClick={() =>
-            handleSubmit({
-              taskName,
-              taskDescription,
-              taskCompleted,
-              setErrorMessage,
-            })
-          }
-          disabled={!isValid}
-          className="d-inline"
-        >
+        <button onClick={handleSubmit} disabled={!isValid} className="d-inline">
           Submit
         </button>
         <p className="d-inline px-3">{errorMesssage}</p>

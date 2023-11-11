@@ -40,19 +40,22 @@ updates the database using the API when the user:
 [x] deletes a task  
 [x] updates a task
 
-[ ] ======================== Test  
+[x] ======================== Test  
+error - 2 tasks - delete first = wrong showing
 write e2e tests for:  
-[ ] on load behavior  
-[ ] on user create a task  
-[ ] on user delete a task  
-[ ] on user updates a task
+[x] on load behavior  
+[x] on user create a task  
+[x] on user delete a task  
+[x] on user updates a task
+
+do list below
 
 write unit tests for:  
 [ ] Task input component  
 [ ] Task component
 
 [ ] ======================== Deploy  
-[ ] Deploy using vercel
+[ ] Deploy using vercel - might have issue because sq lite db [turso] = free tier
 
 remove taskcompleted from input
 fix - not saving task completed
@@ -71,7 +74,12 @@ add FE validation - on input and function
 add return types for functions
 add form labels - screen reader only (check on google) - accessible
 React -bootstrap typed input - have a look at
+prevent save when changed invalid
+less verbose naming - names shouldn't reflect UI
 
 v2 - research server actions
-top level component = server component -> make Form component
+have a look at top level component = server component -> make Form component
 react-hook-form
+
+later
+reusable inputs + atoms -> test at component level

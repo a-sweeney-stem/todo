@@ -12,7 +12,6 @@ interface TaskProps {
 
 const Task = (props: TaskProps) => {
   const { updateTasks, id } = props;
-
   const [isTaskOpen, setIsTaskOpen] = useState(false);
   const [taskName, setTaskName] = useState(props.taskName);
   const [taskDescription, setTaskDescription] = useState(props.taskDescription);
@@ -22,11 +21,11 @@ const Task = (props: TaskProps) => {
     setTaskName(event.target.value);
   };
 
-  const handleOpenButtonClick = () => {
+  const handleOpenTask = () => {
     setIsTaskOpen((oldVal) => !oldVal);
   };
 
-  const handleCheckboxChange = () => {
+  const handleToggleCheckbox = () => {
     setTaskCompleted((oldVal) => !oldVal);
   };
 
@@ -34,14 +33,14 @@ const Task = (props: TaskProps) => {
     setTaskDescription(event.target.value);
   };
 
-  const handleDeleteIconClick = async () => {
+  const handleDelete = async () => {
     await fetch(`/api/task/${id}`, {
       method: "DELETE",
     });
     updateTasks();
   };
 
-  const handleSaveIconClick = async () => {
+  const handleSave = async () => {
     const newTask = {
       taskName,
       taskDescription,
@@ -55,11 +54,15 @@ const Task = (props: TaskProps) => {
   };
 
   return (
-    <div className={`${styles.taskContainer} container p-3 bg-info`}>
+    <div
+      className={`${styles.taskContainer} container p-3 bg-info`}
+      data-testID={`task-${id}`}
+    >
       <div className="row-1 d-flex flex-row justify-content-between">
         <button
-          onClick={handleOpenButtonClick}
+          onClick={handleOpenTask}
           className={isTaskOpen ? "bi-dash" : "bi-plus"}
+          data-testID={`open-toggle-${id}`}
         ></button>
 
         <div className="row-1">
@@ -67,6 +70,7 @@ const Task = (props: TaskProps) => {
             type="text"
             className="form-control"
             id="taskNameInput"
+            data-testID={`task-name-input-${id}`}
             placeholder="Enter Task Name"
             value={taskName}
             onChange={handleInputChange}
@@ -74,8 +78,12 @@ const Task = (props: TaskProps) => {
         </div>
 
         <div>
-          <button className="bi-floppy" onClick={handleSaveIconClick} />
-          <button className="bi-trash" onClick={handleDeleteIconClick} />
+          <button className="bi-floppy" onClick={handleSave} />
+          <button
+            className="bi-trash"
+            onClick={handleDelete}
+            data-testID={`delete-button-${id}`}
+          />
         </div>
       </div>
 
@@ -88,6 +96,7 @@ const Task = (props: TaskProps) => {
               placeholder="Enter Task Description"
               value={taskDescription}
               onChange={handleTextAreaChange}
+              data-testID={`task-description-${id}`}
             />
           </div>
 
@@ -97,7 +106,8 @@ const Task = (props: TaskProps) => {
               type="checkbox"
               id="taskCompletedCheckbox"
               checked={taskCompleted}
-              onChange={handleCheckboxChange}
+              onChange={handleToggleCheckbox}
+              data-testID={`completed-toggle-${id}`}
             />
             <label
               className="form-check-label d-inline"
