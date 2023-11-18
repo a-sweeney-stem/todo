@@ -1,6 +1,6 @@
 const Loading = () => {
   return (
-    <div className="d-flex w-100 h-100 justify-content-center align-items-center">
+    <div className="d-flex justify-content-center position-absolute align-items-center w-100 h-100">
       <p>Data loading, please wait</p>
     </div>
   );
