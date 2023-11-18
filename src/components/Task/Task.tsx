@@ -1,6 +1,6 @@
 "use client";
 import { ChangeEvent, useState } from "react";
-import styles from "./Task.module.css";
+import { Task as TaskType } from "@/database/schema";
 
 interface TaskProps {
   taskName: string;
@@ -12,35 +12,39 @@ interface TaskProps {
 
 const Task = (props: TaskProps) => {
   const { updateTasks, id } = props;
-  const [isTaskOpen, setIsTaskOpen] = useState(false);
-  const [taskName, setTaskName] = useState(props.taskName);
-  const [taskDescription, setTaskDescription] = useState(props.taskDescription);
-  const [taskCompleted, setTaskCompleted] = useState(false);
+  const [isTaskOpen, setIsTaskOpen] = useState<boolean>(false);
+  const [taskName, setTaskName] = useState<string>(props.taskName);
+  const [taskDescription, setTaskDescription] = useState<string>(
+    props.taskDescription
+  );
+  const [taskCompleted, setTaskCompleted] = useState<boolean>(false);
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setTaskName(event.target.value);
   };
 
-  const handleOpenTask = () => {
+  const handleOpenTask = (): void => {
     setIsTaskOpen((oldVal) => !oldVal);
   };
 
-  const handleToggleCheckbox = () => {
+  const handleToggleTaskCompleted = (): void => {
     setTaskCompleted((oldVal) => !oldVal);
   };
 
-  const handleTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTextAreaChange = (
+    event: ChangeEvent<HTMLTextAreaElement>
+  ): void => {
     setTaskDescription(event.target.value);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (): Promise<void> => {
     await fetch(`/api/task/${id}`, {
       method: "DELETE",
     });
     updateTasks();
   };
 
-  const handleSave = async () => {
+  const handleSave = async (): Promise<void> => {
     const newTask = {
       taskName,
       taskDescription,
@@ -54,18 +58,15 @@ const Task = (props: TaskProps) => {
   };
 
   return (
-    <div
-      className={`${styles.taskContainer} container p-3 bg-info`}
-      data-testID={`task-${id}`}
-    >
+    <div className={`container p-3 bg-info`} data-testID={`task-${id}`}>
       <div className="row-1 d-flex flex-row justify-content-between">
         <button
           onClick={handleOpenTask}
-          className={isTaskOpen ? "bi-dash" : "bi-plus"}
+          className={`btn btn-secondary ${isTaskOpen ? "bi-dash" : "bi-plus"}`}
           data-testID={`open-toggle-${id}`}
         ></button>
 
-        <div className="row-1">
+        <div className="row-1 d-flex">
           <input
             type="text"
             className="form-control"
@@ -78,9 +79,12 @@ const Task = (props: TaskProps) => {
         </div>
 
         <div>
-          <button className="bi-floppy" onClick={handleSave} />
           <button
-            className="bi-trash"
+            className="btn btn-secondary bi-floppy m-1"
+            onClick={handleSave}
+          />
+          <button
+            className="btn btn-secondary bi-trash"
             onClick={handleDelete}
             data-testID={`delete-button-${id}`}
           />
@@ -106,7 +110,7 @@ const Task = (props: TaskProps) => {
               type="checkbox"
               id="taskCompletedCheckbox"
               checked={taskCompleted}
-              onChange={handleToggleCheckbox}
+              onChange={handleToggleTaskCompleted}
               data-testID={`completed-toggle-${id}`}
             />
             <label
