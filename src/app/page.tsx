@@ -1,13 +1,23 @@
 "use client";
-import TaskInput from "@/components/TaskInput/TaskInput";
+import TaskForm from "@/components/TaskForm/TaskForm";
 import Task from "@/components/Task/Task";
+import Loading from "./Loading";
 import { Task as TaskType } from "@/database/schema";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Dispatch, SetStateAction, Suspense } from "react";
+import styles from "./page.module.css";
+
+export interface OnSubmitProps {
+  taskName: string;
+  taskDescription: string;
+  taskCompleted: boolean;
+  setErrorMessage: Dispatch<SetStateAction<string>>;
+}
 
 export default function Home() {
+  const [showInput, setShowInput] = useState<boolean>(true);
   const [tasks, setTasks] = useState<TaskType[]>([]);
 
-  const updateTasks = async () => {
+  const updateTasks = async (): Promise<void> => {
     const res = await fetch("/api/tasks");
     const data = await res.json();
 
@@ -15,26 +25,52 @@ export default function Home() {
     setTasks(data.tasks);
   };
 
+  const handleInputToggleClick = (): void => {
+    setShowInput((oldVal) => !oldVal);
+  };
+
+  const onSubmit = async (props: OnSubmitProps): Promise<void> => {
+    await fetch(`/api/task`, {
+      method: "POST",
+      body: JSON.stringify(props),
+    });
+    updateTasks();
+  };
+
   useEffect(() => {
     updateTasks();
   }, []);
 
   return (
-    <>
-      <TaskInput updateTasks={updateTasks} />
-      {tasks.length > 0 &&
-        tasks.map((task: TaskType) => {
-          return (
-            <Task
-              id={task.id}
-              taskName={task.taskName}
-              taskDescription={task.taskDescription}
-              taskCompleted={task.taskCompleted}
-              updateTasks={updateTasks}
-            />
-          );
-        })}
-      {tasks.length === 0 && <p>Please Add a Task</p>}
-    </>
+    <Suspense fallback={<Loading />}>
+      <div className="w-100 d-flex justify-content-center">
+        <div className={styles.appContainer}>
+          <div className="pt-3 pb-3">
+            <button
+              onClick={handleInputToggleClick}
+              className="btn btn-primary"
+            >
+              {showInput ? "Hide Task Input" : "Show Task Input"}
+            </button>
+          </div>
+          {showInput && <TaskForm onSubmit={onSubmit} />}
+          {tasks.length > 0 &&
+            tasks.map((task: TaskType) => {
+              return (
+                <Task
+                  id={task.id}
+                  taskName={task.taskName}
+                  taskDescription={task.taskDescription}
+                  taskCompleted={task.taskCompleted}
+                  updateTasks={updateTasks}
+                />
+              );
+            })}
+          <div className="pt-3 pb-3">
+            {tasks.length === 0 && <p>Please Add a Task</p>}
+          </div>
+        </div>
+      </div>
+    </Suspense>
   );
 }
