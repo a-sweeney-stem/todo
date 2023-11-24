@@ -5,6 +5,13 @@ import Loading from "./Loading";
 import { Task as TaskType } from "@/database/schema";
 import { useEffect, useState, Dispatch, SetStateAction, Suspense } from "react";
 import styles from "./page.module.css";
+import { z } from "zod";
+
+const validation = z.object({
+  taskName: z.string(),
+  taskDescription: z.string(),
+  taskCompleted: z.boolean(),
+});
 
 export interface OnSubmitProps {
   taskName: string;
@@ -30,9 +37,18 @@ export default function Home() {
   };
 
   const onSubmit = async (props: OnSubmitProps): Promise<void> => {
+    const validatedData = validation.safeParse({
+      taskName: props.taskName,
+      taskDescription: props.taskDescription,
+      taskCompleted: props.taskCompleted,
+    });
+    if (!validatedData.success) {
+      throw new Error("Validation Error");
+    }
+
     await fetch(`/api/task`, {
       method: "POST",
-      body: JSON.stringify(props),
+      body: JSON.stringify(validatedData),
     });
     updateTasks();
   };
