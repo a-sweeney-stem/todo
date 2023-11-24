@@ -1,6 +1,6 @@
 "use client";
 import { ChangeEvent, useState } from "react";
-import { Task as TaskType } from "@/database/schema";
+import Form from "react-bootstrap/Form";
 
 interface TaskProps {
   taskName: string;
@@ -67,7 +67,7 @@ const Task = (props: TaskProps) => {
         ></button>
 
         <div className="row-1 d-flex">
-          <input
+          <Form.Control
             type="text"
             className="form-control"
             id="taskNameInput"

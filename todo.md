@@ -60,7 +60,7 @@ write unit tests for:
 use optimistic updates -> update when click add => add to local array => use useEffect on local array to sync with db
 
 add form labels - screen reader only (check on google) - accessible
-React -bootstrap typed input - have a look at
+
 prevent save when changed invalid
 
 v2 - research server actions

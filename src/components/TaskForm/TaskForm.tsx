@@ -1,6 +1,7 @@
 "use client";
 import { ChangeEvent, useEffect, useState } from "react";
 import { OnSubmitProps } from "@/app/page";
+import Form from "react-bootstrap/Form";
 
 interface TaskFormProps {
   onSubmit: (props: OnSubmitProps) => void;
@@ -52,7 +53,7 @@ const TaskForm = ({ onSubmit }: TaskFormProps) => {
   return (
     <div className={`container p-3 bg-info`} data-testID={"task-input"}>
       <div className="row-1">
-        <input
+        <Form.Control
           type="text"
           className="form-control"
           id="taskNameInput"
