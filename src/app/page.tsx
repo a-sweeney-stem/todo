@@ -48,7 +48,7 @@ export default function Home() {
 
     await fetch(`/api/task`, {
       method: "POST",
-      body: JSON.stringify(validatedData),
+      body: JSON.stringify(validatedData.data),
     });
     updateTasks();
   };
