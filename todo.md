@@ -59,9 +59,6 @@ write unit tests for:
 
 use optimistic updates -> update when click add => add to local array => use useEffect on local array to sync with db
 
-add data validation (ZOD = option) examples in monorepo
-add FE validation - on input and function
-
 add form labels - screen reader only (check on google) - accessible
 React -bootstrap typed input - have a look at
 prevent save when changed invalid

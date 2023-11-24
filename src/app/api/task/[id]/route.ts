@@ -3,6 +3,13 @@ import { tasks } from "@/database/schema/tasks";
 import { APIErrorResponse, APIResponse } from "@/helpers/types";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+
+const validation = z.object({
+  taskName: z.string(),
+  taskDescription: z.string(),
+  taskCompleted: z.boolean(),
+});
 
 export async function PUT(
   request: NextRequest,
@@ -11,10 +18,24 @@ export async function PUT(
   try {
     const id = parseInt(params.id);
     const body = await request.json();
+    const validatedData = validation.safeParse({
+      taskName: body.taskName,
+      taskDescription: body.taskDescription,
+      taskCompleted: body.taskCompleted,
+    });
+    if (!validatedData.success) {
+      return NextResponse.json(
+        {
+          error: "There is an error with your request data!",
+          body: validatedData.error,
+        },
+        { status: 400 }
+      );
+    }
 
     const task = await db
       .update(tasks)
-      .set(body)
+      .set(validatedData.data)
       .where(eq(tasks.id, id))
       .returning();
 
