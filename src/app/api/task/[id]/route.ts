@@ -3,13 +3,7 @@ import { tasks } from "@/database/schema/tasks";
 import { APIErrorResponse, APIResponse } from "@/helpers/types";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
-
-const validation = z.object({
-  taskName: z.string(),
-  taskDescription: z.string(),
-  taskCompleted: z.boolean(),
-});
+import { validation } from "@/helpers/validation";
 
 export async function PUT(
   request: NextRequest,

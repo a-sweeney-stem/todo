@@ -57,13 +57,14 @@ write unit tests for:
 [ ] ======================== Deploy  
 [ ] Deploy using vercel - might have issue because sq lite db [turso] = free tier
 
-use optimistic updates -> update when click add => add to local array => use useEffect on local array to sync with db
-
 add form labels - screen reader only (check on google) - accessible
 
-prevent save when changed invalid
+v2
 
-v2 - research server actions
+research server actions
+
+use optimistic updates -> update when click add => add to local array => use useEffect on local array to sync with db
+
 have a look at top level component = server component -> make Form component
 react-hook-form
 

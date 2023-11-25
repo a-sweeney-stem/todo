@@ -5,13 +5,7 @@ import Loading from "./Loading";
 import { Task as TaskType } from "@/database/schema";
 import { useEffect, useState, Dispatch, SetStateAction, Suspense } from "react";
 import styles from "./page.module.css";
-import { z } from "zod";
-
-const validation = z.object({
-  taskName: z.string(),
-  taskDescription: z.string(),
-  taskCompleted: z.boolean(),
-});
+import { validation } from "@/helpers/validation";
 
 export interface OnSubmitProps {
   taskName: string;

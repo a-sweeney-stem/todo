@@ -1,6 +1,7 @@
 "use client";
 import { ChangeEvent, useState } from "react";
 import Form from "react-bootstrap/Form";
+import { validation } from "@/helpers/validation";
 
 interface TaskProps {
   taskName: string;
@@ -51,9 +52,14 @@ const Task = (props: TaskProps) => {
       taskCompleted,
     };
 
+    const validatedNewTask = validation.safeParse(newTask);
+    if (!validatedNewTask.success) {
+      throw new Error("Validation Error");
+    }
+
     await fetch(`/api/task/${props.id}`, {
       method: "PUT",
-      body: JSON.stringify(newTask),
+      body: JSON.stringify(validatedNewTask),
     });
   };
 
