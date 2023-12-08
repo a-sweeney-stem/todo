@@ -47,8 +47,7 @@ write e2e tests for:
 [x] on user create a task  
 [x] on user delete a task  
 [x] on user updates a task
-
-do list below
+fix press delete => inputs deleted
 
 write unit tests for:  
 [ ] Task input component  
@@ -57,16 +56,11 @@ write unit tests for:
 [ ] ======================== Deploy  
 [ ] Deploy using vercel - might have issue because sq lite db [turso] = free tier
 
-add form labels - screen reader only (check on google) - accessible
+[ ] ======================== VERSION 2  
+[ ] research server actions
+[ ] use optimistic updates -> update when click add => add to local array => use useEffect on local array to sync with db
+[ ] have a look at top level component = server component -> make Form component
+[ ] react-hook-form
 
-v2
-
-research server actions
-
-use optimistic updates -> update when click add => add to local array => use useEffect on local array to sync with db
-
-have a look at top level component = server component -> make Form component
-react-hook-form
-
-later
-reusable inputs + atoms -> test at component level
+[ ] ======================== Later 
+[ ] reusable inputs + atoms -> test at component level

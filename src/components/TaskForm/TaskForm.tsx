@@ -51,28 +51,30 @@ const TaskForm = ({ onSubmit }: TaskFormProps) => {
   }, [taskName, taskDescription]);
 
   return (
-    <div className={`container p-3 bg-info`} data-testID={"task-input"}>
-      <div className="row-1">
+    <Form className={`container p-3 bg-info`} data-testID={"task-input"}>
+      <Form.Group className="row-1" controlId="taskForm.taskNameInput">
         <Form.Control
           type="text"
-          className="form-control"
           id="taskNameInput"
           placeholder="Enter Task Name"
           value={taskName}
           onChange={handleInputChange}
         />
-      </div>
+        <Form.Label for="taskNameInput" className="d-none">Enter Task Name: </Form.Label>
+      </Form.Group>
       <br />
-      <div className="row-1 mb-2">
-        <textarea
-          className="form-control"
+      <Form.Group className="row-1 mb-2">
+        <Form.Control
+          as="textarea"
+          id="taskDescriptionInput"
           rows={3}
           placeholder="Enter Task Description"
           value={taskDescription}
           onChange={handleTextAreaChange}
         />
-      </div>
-      <div className="row-1">
+        <Form.Label for="taskDescriptionInput" className="d-none">Enter Task Description: </Form.Label>
+      </Form.Group>
+      <Form.Group className="row-1">
         <button
           onClick={handleSubmit}
           disabled={!isValid}
@@ -81,8 +83,8 @@ const TaskForm = ({ onSubmit }: TaskFormProps) => {
           Submit
         </button>
         <p className="d-inline px-3">{errorMesssage}</p>
-      </div>
-    </div>
+      </Form.Group>
+    </Form>
   );
 };
 

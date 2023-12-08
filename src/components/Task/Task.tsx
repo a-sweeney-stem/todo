@@ -64,15 +64,15 @@ const Task = (props: TaskProps) => {
   };
 
   return (
-    <div className={`container p-3 bg-info`} data-testID={`task-${id}`}>
-      <div className="row-1 d-flex flex-row justify-content-between">
+    <Form className={`container p-3 bg-info`} data-testID={`task-${id}`}>
+      <Form.Group className="row-1 d-flex flex-row justify-content-between">
         <button
           onClick={handleOpenTask}
           className={`btn btn-secondary ${isTaskOpen ? "bi-dash" : "bi-plus"}`}
           data-testID={`open-toggle-${id}`}
         ></button>
 
-        <div className="row-1 d-flex">
+        <Form.Group className="row-1 d-flex">
           <Form.Control
             type="text"
             className="form-control"
@@ -95,12 +95,13 @@ const Task = (props: TaskProps) => {
             data-testID={`delete-button-${id}`}
           />
         </div>
-      </div>
+      </Form.Group>
 
       {isTaskOpen && (
-        <div className="row-1">
-          <div className="row-1 mt-4 mb-2">
-            <textarea
+        <Form.Group className="row-1">
+          <Form.Group className="row-1 mt-4 mb-2">
+            <Form.Control
+              as="textarea"
               className="form-control"
               rows={3}
               placeholder="Enter Task Description"
@@ -108,10 +109,10 @@ const Task = (props: TaskProps) => {
               onChange={handleTextAreaChange}
               data-testID={`task-description-${id}`}
             />
-          </div>
+          </Form.Group>
 
-          <div className="row-1 form-check mb-2">
-            <input
+          <Form.Group className="row-1 form-check mb-2">
+            <Form.Control
               className="form-check-input d-inline"
               type="checkbox"
               id="taskCompletedCheckbox"
@@ -119,16 +120,16 @@ const Task = (props: TaskProps) => {
               onChange={handleToggleTaskCompleted}
               data-testID={`completed-toggle-${id}`}
             />
-            <label
+            <Form.Label
               className="form-check-label d-inline"
               htmlFor="taskCompletedCheckbox"
             >
               Task Completed
-            </label>
-          </div>
-        </div>
+            </Form.Label>
+          </Form.Group>
+        </Form.Group>
       )}
-    </div>
+    </Form>
   );
 };
 
