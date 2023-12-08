@@ -1,6 +1,6 @@
 import { test, expect, Page } from "@playwright/test";
-import { db } from "./../src/database/db";
-import { tasks } from "./../src/database/schema/tasks";
+import { db } from "../src/database/db";
+import { tasks } from "../src/database/schema/tasks";
 
 const createTask = async (page: Page, title: string, description: string) => {
   const taskNameInput = await page
