@@ -6,6 +6,7 @@ import { Task as TaskType } from "@/database/schema";
 import { useEffect, useState, Dispatch, SetStateAction, Suspense } from "react";
 import styles from "./page.module.css";
 import { validation } from "@/helpers/validation";
+import ShowHideButton from "@/components/ShowHideButton/ShowHideButton";
 
 export interface OnSubmitProps {
   taskName: string;
@@ -56,12 +57,7 @@ export default function Home() {
       <div className="w-100 d-flex justify-content-center">
         <div className={styles.appContainer}>
           <div className="pt-3 pb-3">
-            <button
-              onClick={handleInputToggleClick}
-              className="btn btn-primary"
-            >
-              {showInput ? "Hide Task Input" : "Show Task Input"}
-            </button>
+            <ShowHideButton handleClick={handleInputToggleClick} show={showInput}/>
           </div>
           {showInput && <TaskForm onSubmit={onSubmit} />}
           {tasks.length > 0 &&
