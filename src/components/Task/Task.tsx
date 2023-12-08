@@ -82,9 +82,9 @@ const Task = (props: TaskProps) => {
             value={taskName}
             onChange={handleInputChange}
           />
-        </div>
+        </Form.Group>
 
-        <div>
+        <Form.Group>
           <button
             className="btn btn-secondary bi-floppy m-1"
             onClick={handleSave}
@@ -94,7 +94,7 @@ const Task = (props: TaskProps) => {
             onClick={handleDelete}
             data-testID={`delete-button-${id}`}
           />
-        </div>
+        </Form.Group>
       </Form.Group>
 
       {isTaskOpen && (
